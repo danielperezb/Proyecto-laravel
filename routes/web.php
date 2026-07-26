@@ -1,26 +1,13 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PostController;
 
-Route::get('/', function () {
-    return "welcome to my blog";
-});
+Route::get('/', HomeController::class);
 
-Route::get('/posts', function () {
+Route::get('/posts', [PostController::class, "index"]);
 
-    return "aqui se mostrarán todos los posts";
-});
+Route::get('/posts/create', [PostController::class, "create"]);
 
-Route::get('/posts/create', function () {
-
-    return "aqui se mostrá un formulario para crear un post";
-});
-
-Route::get('/posts/{post}/{category?}', function ($post, $category = null) {
-
-    if ($category) {
-        return "aqui se mostrarán todos los post {$post} de la categoria {$category}";
-    } else {
-        return "aqui se mostrarán todos los post {$post}";
-    }
-});
+Route::get('/posts/{post}/', [PostController::class, "show"]);
