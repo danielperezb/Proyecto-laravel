@@ -8,16 +8,21 @@ class PostController extends Controller
 {
     public function index()
     {
-        return "aqui se mostrarán todos los posts";
+        return view("Posts.index");
     }
 
     public function create()
     {
-        return "aqui se mostrá un formulario para crear un post";
+        return view("Posts.create");
     }
+    //funcion alternativa para pasar variables a las vistas
+    //compact("post") 
+
+    //metodo para pasar variables a las vistas
+    //  ["post" => $post]
 
     public function show($post)
     {
-        return "aqui se mostrarán todos los post {$post}";
+        return view("Posts.show", ["post" => $post]);
     }
 }
