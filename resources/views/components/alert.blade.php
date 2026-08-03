@@ -1,3 +1,35 @@
-  <div class="p-4 mb-4 text-sm text-fg-brand-strong rounded-base bg-brand-softer" role="alert">
-      <span class="font-medium">Info alert!</span> Change a few things up and try submitting again.
-  </div>
+   @props(['type' => 'info'])
+
+   @php
+
+       switch ($type) {
+           case 'info':
+               $class = 'text-blue-800 bg-blue-50 dark:bg-blue-200 dark:text-blue-400';
+               break;
+
+           case 'danger':
+               $class = 'text-red-800 bg-red-50 dark:bg-red-200 dark:text-red-400';
+               break;
+
+           case 'success':
+               $class = 'text-green-800 bg-green-50 dark:bg-green-200 dark:text-green-400';
+               break;
+
+           case 'warning':
+               $class = 'text-yellow-800 bg-yellow-50 dark:bg-yellow-200 dark:text-yellow-400';
+               break;
+
+           case 'dark':
+               $class = 'text-gray-800 bg-gray-50 dark:bg-gray200 dark:text-gray-400';
+               break;
+
+           default:
+               $class = 'text-blue-800 bg-blue-50 dark:bg-blue-200 dark:text-blue-400';
+               break;
+       }
+
+   @endphp
+
+   <div class="p-4 mb-4 text-sm rounded-lg {{ $class }}" role="alert">
+       <span class="font-medium">{{ $title }}</span> {{ $slot }}
+   </div>
